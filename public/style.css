@@ -1,0 +1,71 @@
+/**
+ * Css styles for adonis splash page , you are free to delete it
+ * and get started with fresh installation.
+ * Copyright(c) - Harminder Virk
+ * MIT Licensed
+*/
+
+ body{
+ 	font-family: 'Source Sans Pro', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   font-weight: lighter;
+   background: #ffffff;
+ }
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+.__wrapper {
+  width: 960px;
+  margin: auto;
+  padding: 100px 0;
+  text-align:center;
+  display: table;
+}
+
+.__cell {
+  display: table-cell;
+  vertical-align:center;
+}
+
+.__wrapper h2 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.__wrapper p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.__logo {
+  margin-bottom: 10px;
+}
+
+.__wrapper a.g__auth{
+  text-decoration: none;
+  background: #239cbb;
+  box-sizing: border-box;
+  min-height: 35px;
+  width: auto;
+  display: inline-block;
+  padding: 0.9em 1.37em;
+  cursor: pointer;
+  color: #fff !important;
+  font-size: 12px;
+  line-height: 13px;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: none;
+  border-radius: 0.2em;
+  border: rgba(0,0,0,0.05) 0.1em solid;
+  -webkit-transition: background 0.3s ease, border-color 0.3s ease;
+  -moz-transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}

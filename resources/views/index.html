@@ -1,0 +1,14 @@
+{# Extending master template #}
+{% extends './partials/master' %}
+
+{% block content %}
+
+  <div class="__logo">
+    <a href="http://paymt.com" target="_blank">
+      <img src="/public/paytm-logo.png" >
+    </a>
+  </div>
+  <h2> Authenticate using your Google account. </h2>
+  <p> Aws auth will give you access to AWS console, post authentication from Google OAuth. </p>
+  <a href="/initiate" class="g__auth"> Login Using Google </a>
+{% endblock %}
