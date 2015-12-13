@@ -11,6 +11,7 @@ class AuthController {
     this.redirectUri = 'http://localhost:3333/oauth'
     this.appId = Config.get('social.google.APP_ID')
     this.appSecret = Config.get('social.google.APP_SECRET')
+    this.stsArn = Config.get('social.sts.arn')
   }
 
   * index (request, response) {
@@ -28,7 +29,7 @@ class AuthController {
     try {
       const googleResponse = yield GoogleStrategy.getAccessToken(this.appId, this.appSecret, code, this.redirectUri)
       const responseBody = JSON.parse(googleResponse.body)
-      const stsXMLResponse = yield Sts.identify(responseBody.id_token)
+      const stsXMLResponse = yield Sts.identify(responseBody.id_token, this.stsArn)
       const stsResponse = JSON.parse(parser.toJson(stsXMLResponse.body))
       const SessionId = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SessionId
       const SessionKey = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SessionKey

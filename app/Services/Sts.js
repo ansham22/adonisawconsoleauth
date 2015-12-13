@@ -6,14 +6,14 @@ const signInEndPoint = 'https://signin.aws.amazon.com/federation'
 const got = use('got')
 const querystring = use('querystring')
 
-Sts.identify = function * (token) {
+Sts.identify = function * (token, arn) {
 
   const options = {
     DurationSeconds: 900,
     Action  : 'AssumeRoleWithWebIdentity',
     Version : '2011-06-15',
     RoleSessionName: 'web-identity-federation',
-    RoleArn : 'arn:aws:iam::269420620295:role/Aws-sts',
+    RoleArn : arn,
     WebIdentityToken: token
   }
 
