@@ -125,7 +125,8 @@ const commands = [
   'Adonis/Addons/Generator:Middleware',
   'Adonis/Addons/Migration:Make',
   'Adonis/Addons/Migration:Run',
-  'Adonis/Addons/Migration:Rollback'
+  'Adonis/Addons/Migration:Rollback',
+  'App/Commands/Greet'
 ]
 
 module.exports = { providers, deferredProviders, aceProviders, aliases, commands }

@@ -9,6 +9,9 @@ module.exports = {
 
   sts: {
     arn: Env.get('STS_ARN')
+  },
+  hd: {
+    DOMAIN_ID: Env.get('DOMAIN_REG_ID')
   }
 
 }

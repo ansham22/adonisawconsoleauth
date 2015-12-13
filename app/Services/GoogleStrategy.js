@@ -2,10 +2,9 @@
 
 const querystring = use('querystring')
 const got = use('got')
-
 const requestEndPoint = 'https://accounts.google.com/o/oauth2/v2/auth'
 const endPoint = 'https://www.googleapis.com/oauth2/v4/token'
-
+const emailAddressEndPoint = 'https://www.googleapis.com/userinfo/email'
 let GoogleStrategy = exports = module.exports = {}
 
 /**
@@ -15,13 +14,14 @@ let GoogleStrategy = exports = module.exports = {}
  * @param  {String} redirectUri
  * @return {String}
  */
-GoogleStrategy.redirect = function (appId, redirectUri) {
+GoogleStrategy.redirect = function (appId, redirectUri, domainId) {
 
   const options = {
     redirect_uri: redirectUri,
     response_type: 'code',
-    scope: 'openid',
-    client_id: appId
+    scope: 'openid email profile',
+    client_id: appId,
+    hd: domainId
   }
 
   return `${requestEndPoint}?${querystring.stringify(options)}`
@@ -49,4 +49,11 @@ GoogleStrategy.getAccessToken = function * (appId, appSecret, authCode, redirect
   return yield got.post(endPoint, {body:options})
 }
 
+GoogleStrategy.getEmailId = function * (accessToken){
+  const options = {
+    access_token: accessToken,
+    alt: 'json'
+  }
+  return yield got.get(emailAddressEndPoint, {query:options})
+}
 module.exports = GoogleStrategy
