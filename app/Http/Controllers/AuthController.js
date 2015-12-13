@@ -24,8 +24,7 @@ class AuthController {
   * initiate (request, response) {
     const url = GoogleStrategy.redirect(this.appId, this.redirectUri,this.domainId)
     response.redirect(url)
-    console.log()
-  }
+    }
 
   * callback (request, response) {
     const code = request.input('code')
@@ -39,9 +38,11 @@ class AuthController {
       }
       const stsXMLResponse = yield Sts.identify(responseBody.id_token, this.stsArn)
       const stsResponse = JSON.parse(parser.toJson(stsXMLResponse.body))
-      const SessionId = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SessionId
-      const SessionKey = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SessionKey
+      console.log(stsResponse)
+      const SessionId = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.AccessKeyId
+      const SessionKey = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SecretAccessKey
       const SessionToken = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SessionToken
+      console.log(SessionId,SessionKey,SessionToken)
       const stsSignInResponse = yield Sts.getSignInToken(SessionId, SessionKey, SessionToken)
       const awsUrl = Sts.getConsoleUrl(JSON.parse(stsSignInResponse.body).SigninToken)
       response.redirect(awsUrl)
