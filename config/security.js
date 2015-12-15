@@ -2,6 +2,6 @@
 
 module.exports = {
 
-  emailIds : ['ankush.goswami@paytm.com','ankush.goswami02@gmail.com']
+  emailIds : ['ansham.22@gmail.com','ankush.goswami02@gmail.com']
 
 }

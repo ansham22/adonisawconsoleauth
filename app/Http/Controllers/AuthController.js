@@ -38,11 +38,9 @@ class AuthController {
       }
       const stsXMLResponse = yield Sts.identify(responseBody.id_token, this.stsArn)
       const stsResponse = JSON.parse(parser.toJson(stsXMLResponse.body))
-      console.log(stsResponse)
       const SessionId = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.AccessKeyId
       const SessionKey = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SecretAccessKey
       const SessionToken = stsResponse.AssumeRoleWithWebIdentityResponse.AssumeRoleWithWebIdentityResult.Credentials.SessionToken
-      console.log(SessionId,SessionKey,SessionToken)
       const stsSignInResponse = yield Sts.getSignInToken(SessionId, SessionKey, SessionToken)
       const awsUrl = Sts.getConsoleUrl(JSON.parse(stsSignInResponse.body).SigninToken)
       response.redirect(awsUrl)
@@ -53,7 +51,6 @@ class AuthController {
   }
 
   validateEmail (profile) {
-    console.log(profile)
     const emailBody = JSON.parse(profile.body)
     const emailAddress = emailBody.data.email
     return this.emailIds.indexOf(emailAddress) > -1 ? emailAddress : false
