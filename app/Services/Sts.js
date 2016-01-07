@@ -37,13 +37,13 @@ Sts.getSignInToken = function * (id, key, token) {
 Sts.getConsoleUrl = function (signInToken) {
 
 
-  const options = {
+  const optons = {
     SigninToken: signInToken,
     Issuer: 'http://localhost:3333/',
     Action: 'login',
     Destination: 'https://console.aws.amazon.com'
   }
 
-  return `${signInEndPoint}?${querystring.stringify(options)}`
+  return `${signInEndPoint}?${querystring.stringify(optons)}`
 
 }
